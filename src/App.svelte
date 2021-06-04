@@ -32,6 +32,7 @@
       }
     } catch (error) {
       console.error(error);
+      // @TODO: Show error about configuring launchables
     }
   }
 
