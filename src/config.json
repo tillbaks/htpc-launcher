@@ -1,0 +1,48 @@
+{
+  "launchables": [
+    {
+      "name": "YouTube",
+      "icon": "mdiYoutube",
+      "show": true,
+      "cmd": "brave",
+      "args": [
+        "--user-data-dir=/tmp/brave_temp_profile",
+        "--profile-directory=Default",
+        "--start-fullscreen",
+        "--user-agent=\"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.77 Large Screen Safari/534.24 GoogleTV/092754\"",
+        "https://youtube.com/tv"
+      ]
+    },
+    {
+      "name": "Twitch",
+      "icon": "mdiTwitch",
+      "show": true,
+      "cmd": "brave",
+      "args": [
+        "--user-data-dir=/tmp/brave_temp_profile",
+        "--profile-directory=Default",
+        "--start-fullscreen",
+        "https://twitch.tv"
+      ]
+    },
+    { "name": "Kodi", "icon": "mdiKodi", "show": true, "cmd": "kodi" },
+    {
+      "name": "Steam",
+      "icon": "mdiSteam",
+      "show": false,
+      "cmd": "steam",
+      "args": ["steam://open/bigpicture", "-fulldesktopres"]
+    },
+    {
+      "name": "Browser",
+      "icon": "mdiGoogleChrome",
+      "show": true,
+      "cmd": "brave",
+      "args": [
+        "--user-data-dir=/tmp/brave_temp_profile",
+        "--profile-directory=Default",
+        "--start-fullscreen"
+      ]
+    }
+  ]
+}

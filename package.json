@@ -1,0 +1,48 @@
+{
+  "name": "htpc-launcher",
+  "version": "1.0.0",
+  "description": "Simple UI launcher for HTPCs",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:dev": "rollup -c -w",
+    "start": "sirv dist --no-clear",
+    "dev": "concurrently \"npm:build:dev\" \"npm:tauri:dev\"",
+    "tauri:dev": "tauri dev",
+    "tauri": "tauri",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tillbaks/htpc-launcher.git"
+  },
+  "keywords": [
+    "htpc",
+    "applauncher",
+    "launcher",
+    "media",
+    "application"
+  ],
+  "author": "tillbaks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tillbaks/htpc-launcher/issues"
+  },
+  "homepage": "https://github.com/tillbaks/htpc-launcher#readme",
+  "dependencies": {
+    "@mdi/js": "^5.9.55",
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@tauri-apps/api": "^1.0.0-beta.1",
+    "@tauri-apps/cli": "^1.0.0-beta.2",
+    "concurrently": "^6.2.0",
+    "rollup": "^2.50.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sirv-cli": "^1.0.12",
+    "svelte": "^3.38.2",
+    "xstate": "^4.19.2"
+  }
+}
