@@ -3,11 +3,7 @@
   import { readTextFile, BaseDirectory } from "@tauri-apps/api/fs";
   import { Command } from "@tauri-apps/api/shell";
   import Icon from "./Icon.svelte";
-  import {
-    focusVertical,
-    focusHorizontal,
-    getKeyboardFocusableElements,
-  } from "./DirectionalFocus";
+  import { getKeyboardFocusableElements } from "./Utils";
 
   let focusable = [];
   let currentFocus;
@@ -16,12 +12,14 @@
 
   async function updateConfig() {
     let text = "[]";
+
     try {
       text = await readTextFile("htpc-launcher/config.json", {
         dir: BaseDirectory.Config,
       });
       const config = JSON.parse(text);
       launchables = config.launchables;
+
       await tick();
 
       focusable = getKeyboardFocusableElements();
@@ -29,6 +27,7 @@
         currentFocus = focusable.includes(document.activeElement)
           ? document.activeElement
           : focusable[0];
+        currentFocus.focus();
       }
     } catch (error) {
       console.error(error);
@@ -43,26 +42,31 @@
       ? document.activeElement
       : focusable[0];
 
-    //console.log({ focusable, currentFocus });
+    const currentIndex = focusable.indexOf(currentFocus);
+    const nextIndex =
+      (((currentIndex + 1) % focusable.length) + focusable.length) %
+      focusable.length;
+    const prevIndex =
+      (((currentIndex - 1) % focusable.length) + focusable.length) %
+      focusable.length;
 
     switch (event.key) {
       case "ArrowUp": {
-        focusVertical({ currentFocus, focusable, direction: "up" });
         break;
       }
       case "ArrowDown": {
-        focusVertical({ currentFocus, focusable, direction: "down" });
         break;
       }
       case "ArrowLeft": {
-        focusHorizontal({ currentFocus, focusable, direction: "left" });
+        currentFocus = focusable[prevIndex];
         break;
       }
       case "ArrowRight": {
-        focusHorizontal({ currentFocus, focusable, direction: "right" });
+        currentFocus = focusable[nextIndex];
         break;
       }
     }
+    currentFocus.focus();
   }
 
   function launch({ cmd, args = [], cwd = undefined }) {
